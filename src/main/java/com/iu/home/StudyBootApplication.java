@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @SpringBootApplication
 //@EnableAspectJAutoProxy
 @EnableTransactionManagement
+
 public class StudyBootApplication {
 
 	public static void main(String[] args) {
