@@ -8,5 +8,9 @@
   		<typeAlias type="com.iu.home.board.qna.QnaVO" alias="QnaVO"/>
   		<typeAlias type="com.iu.home.board.qna.QnaFileVO" alias="QnaFileVO"/>
   		<typeAlias type="com.iu.home.util.Pager" alias="Pager"/>
+  		<typeAlias type="com.iu.home.member.MemberVO" alias="MemberVO"/>
+  		<typeAlias type="com.iu.home.member.RoleVO" alias="RoleVO"/>
+  		
+  		<typeAlias type="java.util.List" alias="List"/>
   	</typeAliases>
   </configuration>

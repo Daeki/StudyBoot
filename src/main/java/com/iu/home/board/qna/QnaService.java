@@ -27,6 +27,10 @@ public class QnaService {
 	@Value("${app.upload.qna}")
 	private String path;
 	
+	public QnaVO getDetail(QnaVO qnaVO)throws Exception{
+		return qnaMapper.getDetail(qnaVO);
+	}
+	
 	public List<QnaVO> getList(Pager pager)throws Exception{
 		pager.makeRow();
 		return qnaMapper.getList(pager);

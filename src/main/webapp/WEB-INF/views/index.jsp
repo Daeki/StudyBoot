@@ -13,6 +13,20 @@
 </head>
 <body>
 	<h1>Index page</h1>
+	
+	<div>
+		<c:choose>
+			<c:when test="${not empty member}">
+				<a href="./member/logout">logout</a>
+			</c:when>
+			<c:otherwise>
+				<a href="./member/login">login</a>
+				<a href="./member/add">Join</a>
+			</c:otherwise>
+			
+		</c:choose>
+	</div>
+	
 	<img src="./images/winter.jpg" id="id1">
 	<a href="./qna/list">QNA</a>
 	<div>
