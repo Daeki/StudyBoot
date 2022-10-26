@@ -43,16 +43,36 @@ $("#inputId").blur(function(){
 });
 
 //// pw check
-$("#inputPw").blur(function(){
-    let result = nullCheck($("#inputPw").val(), $("#inputPwResult"), "PW");
-    results[1]=result;
-    $("#inputPwCheck").val("");
-    results[2]=false;
-    $("#inputPwCheckResult").html("");
-})
+// $("#inputPw").blur(function(){
+//     let result = nullCheck($("#inputPw").val(), $("#inputPwResult"), "PW");
+//     results[1]=result;
+
+// })
+
+// $("#inputPw").change(function(){
+//     $("#inputPwCheck").val("");
+//     results[2]=false;
+//     $("#inputPwCheckResult").html("");
+// });
+
+$("#inputPw").on({
+    blur: function(){
+            let result = nullCheck($("#inputPw").val(), $("#inputPwResult"), "PW");
+            results[1]=result;
+        
+        },
+    change: function(){
+            $("#inputPwCheck").val("");
+            results[2]=false;
+            $("#inputPwCheckResult").html("");
+        }
+
+});
+
 
 //// pw Equal Check
 $("#inputPwCheck").blur(function(){
+
     let result = equals($("#inputPw").val(), $("#inputPwCheck").val());
     if(result){
         $("#inputPwCheckResult").html("정상")
