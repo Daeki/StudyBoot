@@ -9,6 +9,7 @@
 </head>
 <c:import url="../temp/boot.jsp"></c:import>
 <c:import url="../temp/summer.jsp"></c:import>
+<script defer type="text/javascript" src="/js/fileManger.js"></script>
 <body>
 	
 	<div class="container-fluid">
@@ -29,14 +30,21 @@
 			  <textarea class="form-control" name="contents" id="contents"></textarea>
 			</div>
 			
+			<div class="mb-3" id="fileAddResult">
+				
+			</div>
 			<div class="mb-3">
+				<button type="button" id="fileAdd">FileAdd</button>
+			</div>
+			
+<!-- 		<div class="mb-3">
 			  <label for="contents" class="form-label">File</label>
 			  <input type="file" name="files">
 			</div>
 			<div class="mb-3">
 			  <label for="contents" class="form-label">File</label>
 			  <input type="file" name="files">
-			</div>
+			</div> -->
 			
 			<div>
 				<button class="btn btn-danger">WRITE</button>
