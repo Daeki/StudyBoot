@@ -10,6 +10,10 @@ public class MemberService {
 	@Autowired
 	private MemberMapper memberMapper;
 	
+	public Integer getIdCheck(MemberVO memberVO)throws Exception{
+		return memberMapper.getIdCheck(memberVO);
+	}
+	
 	public int setAdd(MemberVO memberVO)throws Exception{
 		int result = memberMapper.setAdd(memberVO);
 		

@@ -36,9 +36,23 @@ let results = [false, false, false, false, false];
 //// ID Check
 $("#inputId").blur(function(){
     console.log("start")
-    let result = nullCheck($("#inputId").val(), $("#inputIdResult"), "ID");
+    let id = $("#inputId").val();
+    let result = nullCheck(id, $("#inputIdResult"), "ID");
     results[0]=result;
     console.log(result)
+    //단 id가 비어있지 않을 때
+    $.get("./idCheck?id="+id, function(data){
+        console.log("Data : ", data);
+        if(data=='0'){
+            $("#inputIdResult").html("사용가능한 ID");
+            results[0]=true;
+        }else {
+            $("#inputIdResult").html("이미 사용중인 ID");
+            results[0]=false;
+        }
+
+    })
+
 
 });
 
