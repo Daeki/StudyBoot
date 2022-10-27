@@ -26,6 +26,20 @@ public class QnaController {
 	@Autowired
 	private QnaService qnaService;
 	
+	@PostMapping("fileDelete")
+	public void setFileDelete(QnaFileVO qnaFileVO)throws Exception{
+		
+	}
+	
+	@GetMapping("update")
+	public ModelAndView setUpdate(QnaVO qnaVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("board/update");
+		qnaVO = qnaService.getDetail(qnaVO);
+		mv.addObject("vo", qnaVO);
+		return mv;
+	}
+	
 	@GetMapping("detail")
 	public ModelAndView getDetail(QnaVO qnaVO)throws Exception{
 		ModelAndView mv = new ModelAndView();

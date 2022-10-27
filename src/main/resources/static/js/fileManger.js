@@ -1,5 +1,6 @@
 console.log("FileManger");
 
+//파일의 갯수를 지정하는 변수
 let count=0;
 
 $("#fileAdd").click(function(){
@@ -8,6 +9,7 @@ $("#fileAdd").click(function(){
         let r = '<div class="mb-3">';
         r = r+'<label for="contents" class="form-label">File</label>';
         r = r+'<input type="file" name="files">';
+        r = r+'<button type="button" class="del">X</button>'
         r = r+'</div>';
         $("#fileAddResult").append(r);
         count++;
@@ -17,4 +19,40 @@ $("#fileAdd").click(function(){
 
 
     
+});
+
+$("#fileAddResult").on("click", ".del", function(){
+    $(this).parent().remove();
+    count--;
+});
+
+
+/// 글 수정시 첨부파일 삭제
+$(".deleteFile").click(function(){
+    //DB, HDD에 파일 삭제
+    let check = confirm("삭제 됩니다.. 복구 불가");
+
+    if(check){
+        //post
+        // /qna/fileDelete
+        //파라미터 fileNum
+        let fileNum = $(this).attr("data-file-num");
+        
+        $.ajax({
+            type:"POST",
+            url :"fileDelete",
+            data:{
+                fileNum:fileNum
+            },
+            success:function(result){
+                console.log("Result : ",result)
+            },
+            error:function(){
+                console.log("Error 발생");
+            }
+
+        });
+
+    }
+
 });

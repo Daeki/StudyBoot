@@ -16,6 +16,10 @@
 		<img alt="" src="/file/qna/${fileVO.fileName}">
 		<a href="/fileDown/qna?fileNum=${fileVO.fileNum}">${fileVO.oriName}</a>
 	</c:forEach>
+	
+	<div>
+		<a href="update?num=${vo.num}">Update</a>
+	</div>
 
 </body>
 </html>

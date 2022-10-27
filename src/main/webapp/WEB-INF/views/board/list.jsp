@@ -31,7 +31,7 @@
 			<c:forEach items="${list}" var="vo">
 				<tr>
 					<td>${vo.num}</td>
-					<td>${vo.title}</td>
+					<td><a href="detail?num=${vo.num}">${vo.title}</a></td>
 					<td>${vo.writer}</td>
 					<td>${vo.hit}</td>
 					<td>${vo.regDate}</td>
