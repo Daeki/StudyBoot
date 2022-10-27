@@ -4,6 +4,14 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.iu.home.board.qna.QnaMapper">
+	<select id="getDetailFile" parameterType="QnaFileVO" resultType="QnaFileVO">
+		SELECT * FROM QNAFILES WHERE FILENUM=#{fileNum}
+	</select>
+	
+	<delete id="setDeleteFile" parameterType="QnaFileVO">
+		DELETE FROM QNAFILES WHERE FILENUM=#{fileNum}
+	</delete>
+
 	<select id="getDetail" parameterType="QnaVO" resultMap="getDetailResult">
 		SELECT Q.*, QF.*
 		FROM QNA Q

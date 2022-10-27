@@ -37,7 +37,8 @@ $(".deleteFile").click(function(){
         // /qna/fileDelete
         //파라미터 fileNum
         let fileNum = $(this).attr("data-file-num");
-        
+        console.log("Before Result This", $(this));
+        const btn = $(this);
         $.ajax({
             type:"POST",
             url :"fileDelete",
@@ -46,6 +47,8 @@ $(".deleteFile").click(function(){
             },
             success:function(result){
                 console.log("Result : ",result)
+                console.log("After Result This", $(this));
+                $(btn).parent().remove();
             },
             error:function(){
                 console.log("Error 발생");

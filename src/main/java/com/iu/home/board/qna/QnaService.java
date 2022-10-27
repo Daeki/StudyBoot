@@ -27,6 +27,19 @@ public class QnaService {
 	@Value("${app.upload.qna}")
 	private String path;
 	
+	public int setDeleteFile(QnaFileVO qnaFileVO)throws Exception{
+		qnaFileVO = qnaMapper.getDetailFile(qnaFileVO);
+		int result = qnaMapper.setDeleteFile(qnaFileVO);
+		
+		if(result>0) {
+			File file = new File(path, qnaFileVO.getFileName());
+			file.delete();
+		}
+		
+		return result;
+		
+	}
+	
 	public QnaVO getDetail(QnaVO qnaVO)throws Exception{
 		return qnaMapper.getDetail(qnaVO);
 	}

@@ -10,7 +10,10 @@ import com.iu.home.util.Pager;
 //@Repository 생략 가능
 @Mapper
 public interface QnaMapper {
-
+	public QnaFileVO getDetailFile(QnaFileVO qnaFileVO) throws Exception;
+	
+	public int setDeleteFile(QnaFileVO qnaFileVO)throws Exception;
+	
 	public QnaVO getDetail(QnaVO qnaVO)throws Exception;
 	
 	public List<QnaVO> getList(Pager pager)throws Exception;

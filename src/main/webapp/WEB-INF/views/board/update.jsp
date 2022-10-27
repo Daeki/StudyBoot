@@ -33,7 +33,10 @@
 			
 			<div class="mb-3" id="fileAddResult">
 				<c:forEach items="${vo.qnaFiles}" var="fileVO">
-					<p>${fileVO.oriName}<button type="button" class="deleteFile" data-file-num="${fileVO.fileNum}">X</button> </p>
+					<p>
+						${fileVO.oriName}
+						<button type="button" class="deleteFile" data-file-num="${fileVO.fileNum}">X</button>
+					</p>
 				</c:forEach>
 				
 			</div>
