@@ -10,6 +10,7 @@
 <c:import url="../temp/boot.jsp"></c:import>
 <c:import url="../temp/summer.jsp"></c:import>
 <script defer type="text/javascript" src="/js/fileManger.js"></script>
+
 <body>
 	
 	<div class="container-fluid">
@@ -31,7 +32,7 @@
 			  <textarea class="form-control" name="contents" id="contents"></textarea>
 			</div>
 			
-			<div class="mb-3" id="fileAddResult">
+			<div class="mb-3" id="fileAddResult" data-file-size="${vo.qnaFiles.size()}">
 				<c:forEach items="${vo.qnaFiles}" var="fileVO">
 					<p>
 						${fileVO.oriName}
@@ -60,6 +61,7 @@
       });
     
     $('#contents').summernote('code', '${vo.contents}')
+    
     
 	</script>
 
