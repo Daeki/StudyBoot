@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>   
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +10,7 @@
 <title>Insert title here</title>
 <c:import url="../temp/boot.jsp"></c:import>
 <script defer src="/js/util.js"></script>
-<!-- <script defer src="/js/memberAdd.js"></script> -->
+<script defer src="/js/memberAdd.js"></script>
 </head>
 <body>
 	<h1>회원가입 page</h1>
@@ -21,8 +22,10 @@
 			    <label for="inputUserName" class="col-sm-2 col-form-label">ID</label>
 			    <div class="col-sm-10">
 			      <form:input path="id" cssClass="form-control" id="inputId"/>	
-			      <form:errors path="id"></form:errors>
-			      <div id="inputIdResult"></div>
+			      
+			      <div id="inputIdResult">
+			      	<form:errors path="id"></form:errors>
+			      </div>
 			    </div>
 			  </div>
 			  <div class="row mb-3">
@@ -47,8 +50,10 @@
 			    <label for="inputName" class="col-sm-2 col-form-label">Name</label>
 			    <div class="col-sm-10">
 			      <form:input path="name" cssClass="form-control" id="inputName"/>
-			      <form:errors path="name"></form:errors>	
-				  <div id="inputNameResult"></div>
+			     	
+				  <div id="inputNameResult">
+				  	${name}
+				  </div>
 			    </div>
 			  </div>
 			  
@@ -101,6 +106,7 @@
 				동의1 <input type="checkbox" class="check" name="" id="">	
 				<div>
 					약관1
+					<spring:message code="agree.test"></spring:message>
 				</div>	
 			</div>
 

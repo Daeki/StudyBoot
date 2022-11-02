@@ -24,8 +24,24 @@ public class HomeController {
 //	private final Logger log = LoggerFactory.getLogger(HomeController.class);
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	
-	@Autowired
-	private QnaMapper qnaMapper;
+	@GetMapping("/admin")
+	@ResponseBody
+	public String admin() {
+		return "Admin Role";
+	}
+	
+	@GetMapping("/manager")
+	@ResponseBody
+	public String manager() {
+		return "Manager Role";
+	}
+	
+	@GetMapping("/user")
+	@ResponseBody
+	public String member() {
+		return "Member Role";
+	}
+	
 	
 	@GetMapping("/")
 	public String home() throws Exception {
