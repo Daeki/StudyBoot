@@ -6,6 +6,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
@@ -33,7 +35,7 @@ public class SecurityConfig  {
 					.disable()
 				.authorizeRequests()
 					.antMatchers("/admin").hasRole("ADMIN")
-					.antMatchers("/manager").hasRole("MANAGER")
+					.antMatchers("/manager").hasAnyRole("ADMIN","MANAGER")
 					.antMatchers("/qna/list").permitAll()
 					.antMatchers("/qna/**").hasRole("MEMBER")
 					.anyRequest().permitAll()
@@ -49,10 +51,21 @@ public class SecurityConfig  {
 					.permitAll()
 					.and()
 				.logout()
+					.logoutUrl("/member/logout")
+					.logoutSuccessUrl("/")
+					.invalidateHttpSession(true)
+					.deleteCookies("JSESSIONID")
 					.permitAll();
 		
 		return httpSecurity.build();
 					
 	}
+	
+	//평문(Clear Text)을 암호화 시켜주는 객체생성
+	@Bean
+	public PasswordEncoder getEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+	
 
 }

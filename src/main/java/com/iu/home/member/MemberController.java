@@ -26,6 +26,12 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	
+	@GetMapping("mypage")
+	public void getMyPage()throws Exception{
+		
+	}
+	
 	@GetMapping("idCheck")
 	@ResponseBody
 	public int getIdCheck(MemberVO memberVO)throws Exception{
@@ -97,11 +103,12 @@ public class MemberController {
 //		return "redirect:../";
 //	}
 	
-	@GetMapping("logout")
-	public String getLogout(HttpSession session)throws Exception{
-		session.invalidate();
-		
-		return "redirect:../";
-	}
+//	@GetMapping("logout")
+//	public String getLogout(HttpSession session)throws Exception{
+//		log.info("==== 내가만든 logout 메서드=====");
+//		session.invalidate();
+//		
+//		return "redirect:../";
+//	}
 
 }
