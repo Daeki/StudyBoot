@@ -24,6 +24,7 @@ public class MemberSecurityService implements UserDetailsService {
 		MemberVO memberVO = memberMapper.getLogin(username);
 		log.info("MemberVO => {} ", memberVO);
 		// TODO Auto-generated method stub
+		
 		return memberVO;
 	}
 
