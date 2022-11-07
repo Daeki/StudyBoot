@@ -27,7 +27,12 @@
 			<h3><spring:message code="welcome" arguments="${member.name}"></spring:message> </h3>
 			<h3><spring:message code="welcome2" arguments="${member.id}:${member.name}" argumentSeparator=":"></spring:message> </h3>
 			<a href="./member/mypage">myPage</a>
-			<a href="./member/logout">logout</a>
+			<a href="#" id="logout">Logout</a>
+			<form id="outForm" action="./member/logout" method="post">
+				<sec:csrfInput/>
+				<button>Logout</button>
+			</form>
+			
 
 		</sec:authorize>	
 		
@@ -69,5 +74,10 @@
 	<h1>${h}</h1>
 	<h1>${h}</h1>
 	<h1>${h}</h1>
+	<script type="text/javascript">
+		$("#logout").click(function() {
+			$("#outForm").submit();
+		})
+	</script>
 </body>
 </html>

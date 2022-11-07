@@ -19,7 +19,8 @@
 				<h3>${msg}</h3>
 			</div>
 			
-			<form action="./login" method="post" id="frm" >
+			<form action="login" method="post" id="frm" >
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 			  <div class="mb-3">
 			    <label for="userName" class="form-label">Enter ID</label>
 			    <input type="text" name="id" value="${cookie.userId.value}" class="form-control" id="userName" aria-describedby="emailHelp">
@@ -33,6 +34,12 @@
 			    <input type="checkbox" name="rememberId" class="form-check-input" id="exampleCheck1">
 			    <label class="form-check-label" for="exampleCheck1">ID기억하기</label>
 			  </div>
+			  
+			  <div class="mb-3 form-check">
+			    <input type="checkbox" name="rememberMe" class="form-check-input" id="exampleCheck2">
+			    <label class="form-check-label" for="exampleCheck2">RememberMe</label>
+			  </div>
+			  
 			  <button type="submit" class="btn btn-primary" id="btn">Submit</button>
 			</form>
 			
