@@ -18,6 +18,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.iu.home.member.MemberSecurityService;
+import com.iu.home.member.MemberSocialService;
 import com.iu.home.member.security.LoginFail;
 import com.iu.home.member.security.LoginSuccess;
 import com.iu.home.member.security.LogoutCustom;
@@ -36,6 +37,8 @@ public class SecurityConfig  {
 	private LogoutSuccessCustom logoutSuccessCustom;
 	@Autowired
 	private MemberSecurityService memberSecurityService;
+	@Autowired
+	private MemberSocialService memberSocialService;
 	
 	@Bean
 	//public 을 선언하면 default로 바꾸라는 메세지 출력
@@ -94,7 +97,10 @@ public class SecurityConfig  {
 					.key("rememberMe")  // 인증받은 사용자의 정보f로 Token 생성시 필요, 필수값
 					.userDetailsService(memberSecurityService) //인증 절차를 실행할 UserDetailService, 필수
 					.authenticationSuccessHandler(loginSuccess) //Login 성공 Handler
-					
+					.and()
+				.oauth2Login() //Social Login 설정
+					.userInfoEndpoint()
+					.userService(memberSocialService)
 					
 					;
 		

@@ -39,6 +39,8 @@
 		<sec:authorize access="!isAuthenticated()">	
 			<!-- 로그인 전 -->
 			<a href="./member/login">login</a>
+			<a href="/oauth2/authorization/kakao">Kakao Login</a>
+			
 			<a href="./member/add">Join</a>
 		</sec:authorize>
 		
