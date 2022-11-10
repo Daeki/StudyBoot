@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.home.board.qna.QnaFileVO;
@@ -17,8 +20,9 @@ public class FileManageController {
 	@Autowired
 	private QnaService qnaService;
 	
-	@GetMapping("/fileDown/{p}") //RestFul, RestAPI
-	public ModelAndView fileDown(@PathVariable(name = "p") String path, QnaFileVO qnaFileVO)throws Exception{
+	@RequestMapping(value="", method = RequestMethod.GET)
+	//@GetMapping("/fileDown/{p}/{num}") //RestFul, RestAPI
+	public ModelAndView fileDown(@PathVariable(name = "p") String path,@PathVariable int num,@RequestBody QnaFileVO qnaFileVO)throws Exception{
 		log.info("Path : {} ", path);
 		
 		ModelAndView mv = new ModelAndView();

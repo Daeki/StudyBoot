@@ -1,11 +1,19 @@
 package com.iu.home.member;
 
+import java.net.http.HttpRequest;
+import java.util.Iterator;
 import java.util.List;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,6 +34,39 @@ import lombok.extern.slf4j.Slf4j;
 public class MemberController {
 	@Autowired
 	private MemberService memberService;
+	
+	@GetMapping("logoutResult")
+	public String socialLogout()throws Exception{
+		
+		return "redirect:../";
+	}
+	
+	@GetMapping("delete")
+	public ModelAndView setDelete(HttpServletRequest request, HttpServletResponse response, HttpSession session, String pw)throws Exception{
+		//1. Social, 일반 구분
+		ModelAndView mv = new ModelAndView();
+		SecurityContextImpl context = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
+		Authentication authentication = context.getAuthentication();
+		MemberVO memberVO  =(MemberVO)authentication.getPrincipal();
+			
+		int result= memberService.setDelete(memberVO);
+		
+		
+		if(result>0) {
+			session.invalidate();
+			Cookie [] cookies = request.getCookies();
+			for(Cookie cookie:cookies) {
+				cookie.setMaxAge(0);
+				response.addCookie(cookie);
+			}
+			
+			mv.setViewName("redirect:/");
+		}else {
+			//탙퇴 실패 
+		}	
+		
+		return mv;
+	}
 	
 	
 	@GetMapping("mypage")
