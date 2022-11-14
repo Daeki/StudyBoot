@@ -1,7 +1,10 @@
 package com.iu.home;
 
+import java.util.Calendar;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -21,12 +24,17 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.servlet.function.ServerRequest.Headers;
 
 import com.iu.home.board.qna.PostVO;
 import com.iu.home.board.qna.QnaMapper;
 import com.iu.home.board.qna.QnaVO;
 import com.iu.home.member.MemberVO;
+import com.iu.home.util.TestInterface;
+
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @Controller
 public class HomeController {
@@ -38,6 +46,23 @@ public class HomeController {
 	
 //	private final Logger log = LoggerFactory.getLogger(HomeController.class);
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
+	
+	@GetMapping("/arrow")
+	public void arrow() {
+		//Lamda식(JS Arrow Function)
+		TestInterface t = (m)->System.out.println(m);
+		t.info("test");
+		
+		TestInterface t2 = new TestInterface() {
+			
+			@Override
+			public void info(String message) {
+				System.out.println(message);
+				
+			}
+		};
+		t2.info("test");
+	}
 	
 	@GetMapping("/admin")
 	@ResponseBody
@@ -56,6 +81,37 @@ public class HomeController {
 	public String member() {
 		return "Member Role";
 	}
+	
+	@GetMapping("/web")
+	public String webClientTest() {
+		
+		WebClient webClient = WebClient.builder()
+									   .baseUrl("https://jsonplaceholder.typicode.com/")
+									   .build();
+		Flux<PostVO> res = webClient.get()
+				 					.uri("posts")
+				 					.retrieve()
+				 					.bodyToFlux(PostVO.class);
+		
+		
+		PostVO postVO = res.blockFirst();
+		
+		//public void (PostVO postVO){}
+		// a.test(postVO)
+		
+		res.subscribe((s)->{
+			PostVO pvo = s;
+			log.info("ID : {} ", s.getId());
+		});
+		
+		log.info("Result  => {}", postVO);
+		
+		
+		
+		
+		return "";
+	}
+	
 	
 	@GetMapping("/address")
 	@ResponseBody

@@ -35,6 +35,24 @@ public class QnaController {
 		return 1;
 	}
 	
+	@PostMapping("summerFileDelete")
+	@ResponseBody
+	public boolean setSummerFileDelete(String fileName)throws Exception{
+		log.info("fileName => {}", fileName);
+		return qnaService.setSummerFileDelete(fileName);
+	}
+	
+	@PostMapping("summerFile")
+	@ResponseBody
+	public String setSummerFile(MultipartFile files)throws Exception{
+		log.info("Files => {}", files);
+		//원래는 Service에 작업
+		String result = qnaService.setSummerFile(files);
+		
+		return result;
+		
+	}
+	
 	@PostMapping("fileDelete")
 	@ResponseBody
 	public int setFileDelete(QnaFileVO qnaFileVO)throws Exception{

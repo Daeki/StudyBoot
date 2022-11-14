@@ -51,6 +51,7 @@ public class SecurityConfig  {
 			   .antMatchers("/js/**")
 			   .antMatchers("/favicon/**")
 			   .antMatchers("/resources/**")
+			   .antMatchers("/file/**")
 			   
 			   ;
 	}

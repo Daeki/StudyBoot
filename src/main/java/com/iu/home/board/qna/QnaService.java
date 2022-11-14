@@ -27,6 +27,21 @@ public class QnaService {
 	@Value("${app.upload.qna}")
 	private String path;
 	
+	public boolean setSummerFileDelete(String fileName)throws Exception{
+		fileName = fileName.substring(fileName.lastIndexOf("/")+1);
+		log.info("fileName => {}", fileName);
+		File file = new File(path, fileName);
+		
+		return file.delete();
+	}
+
+	
+	public String setSummerFile(MultipartFile files)throws Exception{
+		String fileName =fileManager.saveFile(files, path);
+		fileName="/file/qna/"+fileName;
+		return fileName;
+	}
+	
 	public int setDeleteFile(QnaFileVO qnaFileVO)throws Exception{
 		qnaFileVO = qnaMapper.getDetailFile(qnaFileVO);
 		int result = qnaMapper.setDeleteFile(qnaFileVO);
